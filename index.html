@@ -135,19 +135,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (min-width:760px){.colours .wrap{grid-template-columns:1fr 1fr}}
 .swatches{display:flex;justify-content:center;gap:0}
 .sw{width:clamp(130px,30vw,190px);aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.05rem}
-.sw.o{background:radial-gradient(circle at 35% 30%,#6E7A3C,#3E4720 70%);color:#F4F1E1;box-shadow:0 0 0 6px var(--linen)}
-.sw.g{background:radial-gradient(circle at 35% 30%,#F0D896,#B8902F 72%);color:#3E3410;margin-left:-38px;box-shadow:0 0 0 6px var(--linen)}
+.sw.o{background:#708238;color:#FFFFFF;box-shadow:0 0 0 6px var(--linen)}
+.sw.g{background:#D4AF37;color:#2E3517;margin-left:-38px;box-shadow:0 0 0 6px var(--linen)}
 .colours .text{text-align:center}
 @media (min-width:760px){.colours .text{text-align:left}}
 
 /* gallery */
 .gallery{background:var(--olive-deep);color:#F4F1E1}
 .gallery .lead{color:#CFCBAE}
-.grid{columns:2 220px;column-gap:14px;margin-top:2.6rem}
-.grid button{display:block;width:100%;margin:0 0 14px;padding:0;border:0;background:#353C1B;border-radius:16px;overflow:hidden;cursor:zoom-in;break-inside:avoid}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:2.6rem}
+.grid button{display:block;width:100%;padding:0;border:0;background:#353C1B;border-radius:16px;overflow:hidden;cursor:zoom-in;aspect-ratio:4/5}
+.grid button.more{display:none}
+.grid.expanded button.more{display:block}
+.grid img{height:100%!important;object-fit:cover}
+.see-all{margin-top:1.8rem}
 .grid img{width:100%;height:auto;transition:transform .5s ease}
 .grid button:hover img{transform:scale(1.03)}
-@media (min-width:900px){.grid{columns:3}}
+@media (min-width:900px){.grid.expanded{grid-template-columns:repeat(3,1fr)}}
 .lightbox{position:fixed;inset:0;z-index:100;background:rgba(22,26,10,.94);display:none;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 3.5rem) 1rem calc(env(safe-area-inset-bottom,0px) + 3.5rem)}
 .lightbox.open{display:flex}
 .lightbox img{max-height:100%;max-width:min(100%,900px);width:auto;object-fit:contain;border-radius:10px}
@@ -186,6 +190,39 @@ legend{font-size:.95rem;margin-bottom:.35rem;padding:0}
 .venue .wrap{text-align:center}
 .venue address{font-style:normal;font-family:var(--display);font-size:clamp(1.15rem,2.8vw,1.4rem);line-height:1.5;margin:0 auto 1.8rem;max-width:30rem}
 
+
+/* please note */
+.notes{max-width:760px;margin:2.5rem auto 0;background:var(--paper);border:1.5px solid var(--gold);border-radius:24px;padding:clamp(1.6rem,4vw,2.4rem)}
+.notes h3{font-family:var(--display);font-weight:400;font-size:clamp(1.4rem,3.4vw,1.8rem);text-align:center;margin:0 0 1.4rem}
+.notes ul{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem}
+.notes li{display:grid;grid-template-columns:44px 1fr;gap:1rem;align-items:start}
+.notes .ic{width:44px;height:44px;border-radius:50%;background:var(--olive);color:var(--gold-light);display:grid;place-items:center}
+.notes .ic svg{width:22px;height:22px}
+.notes strong{display:block;font-weight:500;font-size:1.08rem}
+.notes p{margin:.1rem 0 0;color:var(--muted)}
+.notes a{color:inherit;text-decoration-color:var(--gold);text-underline-offset:3px}
+
+/* gifts */
+.gifts{background:var(--olive);color:#F4F1E1}
+.gifts .lead{color:#E2DEC4}
+.acct{max-width:520px;margin:2.4rem auto 0;background:linear-gradient(160deg,#3A421D,#2E3517);border:2px solid var(--gold);border-radius:26px;padding:2rem 1.5rem;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.acct dl{margin:0;display:grid;gap:1.1rem}
+.acct dt{font-size:.88rem;letter-spacing:.08em;color:var(--gold-light)}
+.acct dd{margin:.15rem 0 0;font-family:var(--display);font-size:1.3rem}
+.acct dd.num{font-size:clamp(2rem,9vw,2.8rem);letter-spacing:.06em;color:var(--gold-light);font-variant-numeric:tabular-nums;line-height:1.15}
+.acct .btn{margin-top:1.6rem}
+.copied{min-height:1.4em;margin:.7rem 0 0;font-size:.95rem;color:var(--gold-light)}
+
+/* music button */
+.music{position:fixed;right:1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);z-index:70;width:52px;height:52px;border-radius:50%;border:1.5px solid var(--gold);background:var(--olive-deep);color:var(--gold-light);display:none;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.music.ready{display:grid}
+.music svg{width:22px;height:22px}
+.music .off{display:none}
+.music.paused .on{display:none}
+.music.paused .off{display:block}
+.music.playing{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(201,164,76,.18),0 6px 18px rgba(0,0,0,.3)}}
+
 /* footer */
 footer{background:var(--olive-deep);color:#CFCBAE;text-align:center;padding:4rem 0 3rem}
 footer .script{font-family:var(--script);color:var(--gold-light);font-size:3rem;line-height:1;margin:0}
@@ -201,8 +238,9 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
     <a class="mono" href="#home" aria-label="Back to top">O&amp;J</a>
     <ul>
       <li><a class="link" href="#details">Details</a></li>
-      <li class="hide-sm"><a class="link" href="#gallery">Gallery</a></li>
+      <li><a class="link" href="#gifts">Gifts</a></li>
       <li class="hide-sm"><a class="link" href="#venue">Directions</a></li>
+      <li class="hide-sm"><a class="link" href="#gallery">Gallery</a></li>
       <li><a class="link pill" href="#rsvp">RSVP</a></li>
     </ul>
   </div>
@@ -274,6 +312,17 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
           <a class="btn outline" href="#venue">Get directions</a>
         </div>
       </div>
+      <div class="notes" role="note" aria-labelledby="notes-h">
+        <h3 id="notes-h">Please note</h3>
+        <ul>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span>
+            <div><strong>No children, please</strong><p>This is an adults-only celebration. Kindly make arrangements for your little ones.</p></div></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11" rx="1.5"/><path d="M3.5 13h17M12 9v11M12 9c-2-3.5-6-3.5-6-1s4 1 6 1zm0 0c2-3.5 6-3.5 6-1s-4 1-6 1z"/></svg></span>
+            <div><strong>No physical gifts</strong><p>Your presence is our greatest gift. If you wish to bless us, please see the <a href="#gifts">account details</a>.</p></div></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg></span>
+            <div><strong>No reception</strong><p>The ceremony is the whole celebration, so please arrive on time for 11:00 AM.</p></div></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -290,11 +339,20 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
     </div>
   </section>
 
-  <section class="section gallery" id="gallery" aria-labelledby="gallery-h">
+
+  <section class="section gifts" id="gifts" aria-labelledby="gifts-h">
     <div class="wrap center">
-      <h2 id="gallery-h">Moments before forever</h2>
-      <p class="lead">Tap any photo to see it larger.</p>
-      <div class="grid" id="grid"></div>
+      <h2 id="gifts-h">Bless the couple</h2>
+      <p class="lead">We kindly request no physical gifts. If you would like to give, you can send a cash gift to the account below.</p>
+      <div class="acct">
+        <dl>
+          <div><dt>Account number</dt><dd class="num" id="acct-num">1050337154</dd></div>
+          <div><dt>Bank</dt><dd>VFD Microfinance Bank</dd></div>
+          <div><dt>Account name</dt><dd>BuiltToLast</dd></div>
+        </dl>
+        <button class="btn solid" type="button" id="copy-btn">Copy account number</button>
+        <p class="copied" id="copied" role="status"></p>
+      </div>
     </div>
   </section>
 
@@ -360,6 +418,14 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
       </div>
     </div>
   </section>
+  <section class="section gallery" id="gallery" aria-labelledby="gallery-h">
+    <div class="wrap center">
+      <h2 id="gallery-h">Moments before forever</h2>
+      <p class="lead">Tap a photo to see it larger.</p>
+      <div class="grid" id="grid"></div>
+      <button class="btn ghost see-all" type="button" id="see-all" aria-expanded="false">See all 10 photos</button>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -371,6 +437,12 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
   </div>
 </footer>
 
+<audio id="song" src="music.mp3" loop preload="auto"></audio>
+<button class="music paused" id="music-btn" type="button" aria-label="Play music">
+  <svg class="on" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+  <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17.5V6.5l10-2.5v11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="6.5" cy="17.5" r="2.5" fill="currentColor"/><circle cx="16.5" cy="15" r="2.5" fill="currentColor"/></svg>
+</button>
+
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="lb-btn lb-close" id="lb-close" aria-label="Close">✕</button>
   <button class="lb-btn lb-prev" id="lb-prev" aria-label="Previous photo">‹</button>
@@ -379,6 +451,7 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
   <div class="lb-count" id="lb-count"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 <script>
 /* ================================================================
    RSVP SETUP: paste your Google Apps Script web app URL between the
@@ -430,6 +503,7 @@ photos.forEach(([src, alt], i) => {
   b.type = "button"; b.setAttribute("aria-label", "View photo " + (i + 1));
   b.innerHTML = '<img loading="lazy" decoding="async" width="900" height="' + (i === 1 ? 1350 : 1125) + '">';
   b.firstChild.src = src; b.firstChild.alt = alt;
+  if (i > 1) b.classList.add("more");
   b.addEventListener("click", () => openLb(i));
   grid.appendChild(b);
 });
@@ -484,6 +558,59 @@ form.addEventListener("submit", async e => {
     note.classList.add("err");
     btn.disabled = false; btn.textContent = "Send RSVP";
   }
+});
+/* ---------- See all photos ---------- */
+const seeAll = document.getElementById("see-all");
+seeAll.addEventListener("click", () => {
+  const open = grid.classList.toggle("expanded");
+  seeAll.textContent = open ? "Show fewer photos" : "See all 10 photos";
+  seeAll.setAttribute("aria-expanded", open);
+  if (!open) document.getElementById("gallery").scrollIntoView();
+});
+
+/* ---------- Copy account number ---------- */
+document.getElementById("copy-btn").addEventListener("click", async () => {
+  const num = "1050337154", msg = document.getElementById("copied");
+  try { await navigator.clipboard.writeText(num); msg.textContent = "Account number copied."; }
+  catch (e) {
+    const r = document.createRange(); r.selectNodeContents(document.getElementById("acct-num"));
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    msg.textContent = "Number selected. Tap Copy to copy it.";
+  }
+  setTimeout(() => { msg.textContent = ""; }, 4000);
+});
+
+/* ---------- Background music (starts on first tap; browsers block sound before that) ---------- */
+const song = document.getElementById("song"), musicBtn = document.getElementById("music-btn");
+song.volume = 0.5;
+let userPaused = false;
+function setMusicUI(playing){
+  musicBtn.classList.toggle("paused", !playing); musicBtn.classList.toggle("playing", playing);
+  musicBtn.setAttribute("aria-label", playing ? "Pause music" : "Play music");
+}
+song.addEventListener("canplay", () => musicBtn.classList.add("ready"), {once:true});
+song.addEventListener("error", () => musicBtn.remove());
+song.addEventListener("play", () => setMusicUI(true));
+song.addEventListener("pause", () => setMusicUI(false));
+function tryPlay(){ if (!userPaused && song.paused) song.play().catch(() => {}); }
+musicBtn.addEventListener("click", e => {
+  e.stopPropagation();
+  if (song.paused){ userPaused = false; song.play().catch(() => {}); } else { userPaused = true; song.pause(); }
+});
+tryPlay();
+["pointerdown","keydown","touchend"].forEach(ev => document.addEventListener(ev, function start(){
+  tryPlay(); ["pointerdown","keydown","touchend"].forEach(x => document.removeEventListener(x, start));
+}, {once:true}));
+
+/* ---------- Confetti on load (about 2 seconds) ---------- */
+window.addEventListener("load", () => {
+  if (!window.confetti || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const colors = ["#708238", "#D4AF37", "#E4CB85", "#FFFFFF"], end = Date.now() + 2000;
+  (function frame(){
+    confetti({ particleCount: 4, angle: 60, spread: 60, origin: { x: 0, y: 0.6 }, colors });
+    confetti({ particleCount: 4, angle: 120, spread: 60, origin: { x: 1, y: 0.6 }, colors });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
 });
 </script>
 </body>
