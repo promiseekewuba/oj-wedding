@@ -348,6 +348,7 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
         <div>
           <label for="f-name">Full name</label>
           <input id="f-name" name="name" autocomplete="name" required>
+          <p style="margin:.4rem 0 0;font-size:.9rem;color:var(--muted)">Coming as a couple? Please write both names in full, e.g. Mr &amp; Mrs Adewale Johnson.</p>
         </div>
         <div class="row">
           <div>
@@ -366,7 +367,7 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
             <label><input type="radio" name="attending" value="No"> Regretfully unable</label>
           </div>
         </fieldset>
-        <div id="guests-wrap">
+        <div id="guests-wrap" hidden>
           <label for="f-guests">How many guests are coming with you?</label>
           <select id="f-guests" name="guests">
             <option>0</option><option>1</option>
