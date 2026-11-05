@@ -385,7 +385,7 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
 
       <div class="thanks" id="thanks" role="status">
         <p class="script">Request received</p>
-        <p id="thanks-text" style="margin:0">Thank you. Your request to attend has been received. Approved guests will receive an email with their access pass. We are working on a strict guest list, so the access pass will only be sent on a first-come, first-served basis. Kindly bear with us </p>
+        <p id="thanks-text" style="margin:0">Thank you. Your request to attend has been received. </p>
       </div>
       <p class="call">For inquiries, call or whatsApp<br>
         Pelumi: <a href="tel:+2349067088154">0906 708 8154</a> (<a href="https://wa.me/2349067088154" target="_blank" rel="noopener">WhatsApp</a>)<br>
@@ -537,8 +537,8 @@ form.addEventListener("submit", async e => {
   try {
     await fetch(RSVP_URL, { method: "POST", mode: "no-cors", body: data });
     form.style.display = "none";
-    document.getElementById("thanks-text").innerHTML = "Thank you. Your request has been received.<br><br><strong>This is not a confirmation.</strong> If you are approved, your access pass will be sent to <strong>" +
-      email.replace(/[<>&"]/g, "") + "</strong>. If you do not receive the email, you will not be allowed in.";
+    document.getElementById("thanks-text").innerHTML = "Thank you. Your request has been received.<br><br><strong>Access pass will be sent on a first-come, first-served basis.</strong> If you are approved, your access pass will be sent to <strong>" +
+      email.replace(/[<>&"]/g, "") + "</strong>. Kindly bear with us.";
     document.getElementById("thanks").style.display = "block";
   } catch (err) {
     note.textContent = "Your request didn’t send. Check your internet connection and try again, or call Pelumi or Boluwatife below.";
