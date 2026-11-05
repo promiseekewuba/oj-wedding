@@ -223,6 +223,13 @@ legend{font-size:.95rem;margin-bottom:.35rem;padding:0}
 .music.playing{animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(201,164,76,.18),0 6px 18px rgba(0,0,0,.3)}}
 
+/* access-pass warning */
+.warn{display:grid;grid-template-columns:28px 1fr;gap:.9rem;text-align:left;margin:1.8rem auto 0;background:#FFF4E5;color:#4A2A05;border:2px solid #C27A12;border-left-width:8px;border-radius:14px;padding:1.1rem 1.2rem}
+.warn svg{width:28px;height:28px;color:#B4560B;margin-top:.1rem}
+.warn strong{display:block;font-weight:600;font-size:1.05rem}
+.warn p{margin:.35rem 0 0}
+.thanks strong{font-weight:600}
+
 /* footer */
 footer{background:var(--olive-deep);color:#CFCBAE;text-align:center;padding:4rem 0 3rem}
 footer .script{font-family:var(--script);color:var(--gold-light);font-size:3rem;line-height:1;margin:0}
@@ -263,7 +270,7 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
         <div><b id="cd-secs">--</b><small>seconds</small></div>
       </div>
       <div class="btns">
-        <a class="btn solid" href="#rsvp">RSVP now</a>
+        <a class="btn solid" href="#rsvp">Request to attend</a>
         <a class="btn ghost" href="#details">See the details</a>
       </div>
     </div>
@@ -315,6 +322,8 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
       <div class="notes" role="note" aria-labelledby="notes-h">
         <h3 id="notes-h">Please note</h3>
         <ul>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 8l9 6 9-6"/></svg></span>
+            <div><strong>Entry by emailed access pass only</strong><p>Only guests approved through the <a href="#rsvp">RSVP form</a> will receive an access pass by email. Without it, you will not be admitted.</p></div></li>
           <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span>
             <div><strong>No children, please</strong><p>This is an adults-only celebration. Kindly make arrangements for your little ones.</p></div></li>
           <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="9" width="17" height="11" rx="1.5"/><path d="M3.5 13h17M12 9v11M12 9c-2-3.5-6-3.5-6-1s4 1 6 1zm0 0c2-3.5 6-3.5 6-1s-4 1-6 1z"/></svg></span>
@@ -341,8 +350,15 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
 
 <section class="section rsvp" id="rsvp" aria-labelledby="rsvp-h">
     <div class="wrap center">
-      <h2 id="rsvp-h">Will you celebrate with us?</h2>
-      <p class="lead">Kindly let us know by filling out the form below, so we can plan for you. This RSVP covers only one person, except for couples. </p>
+      <h2 id="rsvp-h">Request to attend</h2>
+      <p class="lead">Kindly fill out the form below to let us know you would like to attend. Each request covers one person, except for couples.</p>
+      <div class="warn" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4.5M12 17.5v.01"/></svg>
+        <div>
+          <strong>Submitting this form is not a confirmation of attendance.</strong>
+          <p>Only approved guests will receive an email with their access pass. If you do not receive the access pass email, you will not be allowed in. Please make sure your email address is correct.</p>
+        </div>
+      </div>
 
       <form id="rsvp-form" novalidate>
         <div>
@@ -356,17 +372,11 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
             <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
           </div>
           <div>
-            <label for="f-email">Email <span class="opt"></span></label>
-            <input id="f-email" name="email" type="email" autocomplete="email">
+            <label for="f-email">Email address</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <p style="margin:.4rem 0 0;font-size:.9rem;color:var(--muted)">Your access pass will be sent here if approved.</p>
           </div>
         </div>
-        <fieldset>
-          <legend>Will you attend?</legend>
-          <div class="choice">
-            <label><input type="radio" name="attending" value="Yes" required> Joyfully attending</label>
-            <label><input type="radio" name="attending" value="No"> Regretfully unable</label>
-          </div>
-        </fieldset>
         <div id="guests-wrap" hidden>
           <label for="f-guests">How many guests are coming with you?</label>
           <select id="f-guests" name="guests">
@@ -378,13 +388,13 @@ footer .btn{font-size:.9rem;padding:.65rem 1.3rem}
           <textarea id="f-msg" name="message"></textarea>
         </div>
         <p class="form-note" id="form-note" role="status"></p>
-        <div class="btns"><button class="btn dark" type="submit" id="submit-btn">Send RSVP</button>
+        <div class="btns"><button class="btn dark" type="submit" id="submit-btn">Submit request</button>
         </div>
       </form>
 
       <div class="thanks" id="thanks" role="status">
-        <p class="script">Thank you</p>
-        <p id="thanks-text" style="margin:0">Your RSVP is received. We can’t wait to host you.</p>
+        <p class="script">Request received</p>
+        <p id="thanks-text" style="margin:0">Thank you. Your request has been received.</p>
       </div>
       <p class="call">For inquiries, call or whatsApp<br>
         Pelumi: <a href="tel:+2349067088154">0906 708 8154</a> (<a href="https://wa.me/2349067088154" target="_blank" rel="noopener">WhatsApp</a>)<br>
@@ -530,34 +540,30 @@ lb.addEventListener("touchend", e => { if (sx === null) return; const dx = e.cha
 /* ---------- RSVP form ---------- */
 const form = document.getElementById("rsvp-form"), note = document.getElementById("form-note"), btn = document.getElementById("submit-btn");
 const guestsWrap = document.getElementById("guests-wrap");
-form.querySelectorAll('input[name="attending"]').forEach(r => r.addEventListener("change", () => {
-  guestsWrap.style.display = form.attending.value === "No" ? "none" : "";
-}));
 form.addEventListener("submit", async e => {
   e.preventDefault();
   note.className = "form-note";
-  const nameInput = document.getElementById("f-name"); const name = nameInput.value.trim(), phone = form.phone.value.trim(), attending = form.attending.value;
+  const nameInput = document.getElementById("f-name"); const name = nameInput.value.trim(), phone = form.phone.value.trim(), email = form.email.value.trim(), attending = "Requested";
   if (!name){ note.textContent = "Enter your full name."; note.classList.add("err"); return nameInput.focus(); }
   if (phone.replace(/\D/g, "").length < 7){ note.textContent = "Enter a phone number we can reach you on."; note.classList.add("err"); return form.phone.focus(); }
-  if (!attending){ note.textContent = "Choose whether you will attend."; note.classList.add("err"); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ note.textContent = "Enter a valid email address. Your access pass will be sent there if approved."; note.classList.add("err"); return form.email.focus(); }
   if (!RSVP_URL){ note.textContent = "The RSVP form isn’t connected to the Google Sheet yet. Add the web app link in index.html (see the setup guide)."; note.classList.add("err"); return; }
   const data = new URLSearchParams({
-    name, phone, email: form.email.value.trim(), attending,
-    guests: attending === "No" ? "0" : form.guests.value,
+    name, phone, email, attending,
+    guests: "",
     message: form.message.value.trim()
   });
   btn.disabled = true; btn.textContent = "Sending…";
   try {
     await fetch(RSVP_URL, { method: "POST", mode: "no-cors", body: data });
     form.style.display = "none";
-    document.getElementById("thanks-text").textContent = attending === "Yes"
-      ? "Your RSVP is received. We can’t wait to host you, " + name.split(" ")[0] + "."
-      : "Thank you for letting us know, " + name.split(" ")[0] + ". You’ll be in our hearts on the day.";
+    document.getElementById("thanks-text").innerHTML = "Thank you. Your request has been received.<br><br><strong>This is not a confirmation.</strong> If you are approved, your access pass will be sent to <strong>" +
+      email.replace(/[<>&"]/g, "") + "</strong>. If you do not receive the email, you will not be allowed in.";
     document.getElementById("thanks").style.display = "block";
   } catch (err) {
-    note.textContent = "Your RSVP didn’t send. Check your internet connection and try again, or call Pelumi or Boluwatife below.";
+    note.textContent = "Your request didn’t send. Check your internet connection and try again, or call Pelumi or Boluwatife below.";
     note.classList.add("err");
-    btn.disabled = false; btn.textContent = "Send RSVP";
+    btn.disabled = false; btn.textContent = "Submit request";
   }
 });
 /* ---------- See all photos ---------- */
@@ -571,7 +577,7 @@ seeAll.addEventListener("click", () => {
 
 /* ---------- Copy account number ---------- */
 document.getElementById("copy-btn").addEventListener("click", async () => {
-  const num = "1050337154", msg = document.getElementById("copied");
+  const num = document.getElementById("acct-num").textContent.replace(/\s/g, ""), msg = document.getElementById("copied");
   try { await navigator.clipboard.writeText(num); msg.textContent = "Account number copied."; }
   catch (e) {
     const r = document.createRange(); r.selectNodeContents(document.getElementById("acct-num"));
