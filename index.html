@@ -537,8 +537,8 @@ form.addEventListener("submit", async e => {
   try {
     await fetch(RSVP_URL, { method: "POST", mode: "no-cors", body: data });
     form.style.display = "none";
-    document.getElementById("thanks-text").innerHTML = "Thank you. Your request has been received.<br><br><strong>Access pass will be sent on a first-come, first-served basis.</strong> If you are approved, your access pass will be sent to <strong>" +
-      email.replace(/[<>&"]/g, "") + "</strong>. Kindly bear with us.";
+    document.getElementById("thanks-text").innerHTML = "Thank you. Your request has been received.<br><br>If you are approved, your access pass will be sent to <strong>" +
+      email.replace(/[<>&"]/g, "") + "</strong>. <strong? Access pass will be sent on a first-come, first-served basis. </strong> Kindly bear with us.";
     document.getElementById("thanks").style.display = "block";
   } catch (err) {
     note.textContent = "Your request didn’t send. Check your internet connection and try again, or call Pelumi or Boluwatife below.";
